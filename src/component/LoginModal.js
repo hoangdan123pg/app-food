@@ -17,6 +17,7 @@ export default function LoginModal({ isVisible, onClose }) {
             resizeMode="cover"
           >
           <Text style={styles.title}>Đăng Nhập</Text>
+          <Text style={styles.title}>Đăng Nhập1</Text>
           <Button title="Đóng" onPress={onClose} />
           </ImageBackground>
         </View>
