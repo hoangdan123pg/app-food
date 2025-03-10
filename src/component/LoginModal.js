@@ -12,6 +12,7 @@ export default function LoginModal({ isVisible, onClose }) {
       >
         <View style={styles.container}>
           <Text style={styles.title}>Đăng Nhập</Text>
+          <Text style={styles.title}>Đăng Nhập1</Text>
           <Button title="Đóng" onPress={onClose} />
         </View>
       </Modal>
