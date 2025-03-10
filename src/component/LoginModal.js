@@ -12,7 +12,7 @@ export default function LoginModal({ isVisible, onClose }) {
       >
         <View style={styles.container}>
           <ImageBackground 
-            source={require('../assets/login_bg.jpg')} // Đường dẫn ảnh
+            //source={require('../assets/login_bg.jpg')} // Đường dẫn ảnh
             style={styles.backgroundImage}
             resizeMode="cover"
           >
