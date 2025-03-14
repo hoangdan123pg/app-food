@@ -1,13 +1,16 @@
-import { StatusBar } from "expo-status-bar";
+import React from 'react';
 import { NavigationContainer } from "@react-navigation/native";
 import { ContextProvider } from "./src/context/Context";
 import BottomNavigator from "./src/navigator/BottomNavigator";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { StatusBar } from 'expo-status-bar';
 import { Text } from "react-native";
+
 Text.defaultProps = {
-  style: { fontFamily: "Roboto"},
+  style: { fontFamily: "Roboto" },
 };
-export default function App() {
+
+const App = () => {
   return (
     <SafeAreaProvider>
       <ContextProvider>
@@ -18,4 +21,6 @@ export default function App() {
       </ContextProvider>
     </SafeAreaProvider>
   );
-}
+};
+
+export default App;

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import { View, Text } from 'react-native';
 import { Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -7,12 +7,9 @@ import HomeScreen from '../screen/user/HomeScreen';
 import Notification from '../screen/user/Notification';
 import Order from '../screen/user/Order';
 import Profile from '../screen/user/Profile';
-import {Context} from '../context/Context';
-import LoginModal from '../component/LoginModal';
 const Tab = createBottomTabNavigator();
 export default function BottomNavigator() {
-  const {account} = useContext(Context);
-  const [isLoginVisible, setLoginVisible] = useState(false);
+
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({

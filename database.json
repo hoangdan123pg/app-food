@@ -35,6 +35,94 @@
       "rating": 4.8,
       "reviews": "2.7k",
       "available": true
+    },
+    {
+      "id": "3",
+      "name": "Bún Chả",
+      "image": "https://cdn.tgdd.vn/Files/2021/09/09/1382247/cach-lam-bun-cha-ha-noi-thom-ngon-dam-da-chuan-vi-202201251117520862.jpg",
+      "category": "Món chính",
+      "description": "Bún chả Hà Nội với thịt nướng thơm ngon và nước chấm chua ngọt.",
+      "price": 2.7,
+      "rating": 4.8,
+      "reviews": "1.9k",
+      "available": true
+    },
+    {
+      "id": "4",
+      "name": "Gỏi Cuốn",
+      "image": "https://cdn.tgdd.vn/Files/2021/01/11/1320935/cach-lam-goi-cuon-tom-thit-cham-tuong-hoac-nuoc-mam-deu-ngon-202201251122144002.jpg",
+      "category": "Món khai vị",
+      "description": "Gỏi cuốn tôm thịt với rau tươi và nước chấm đặc biệt.",
+      "price": 2.0,
+      "rating": 4.7,
+      "reviews": "1.5k",
+      "available": true
+    },
+    {
+      "id": "5",
+      "name": "Bánh Xèo",
+      "image": "https://cdn.tgdd.vn/Files/2020/12/09/1310264/cach-lam-banh-xeo-viet-nam-thom-ngon-tai-nha-202201251133599392.jpg",
+      "category": "Món chính",
+      "description": "Bánh xèo giòn rụm, nhân tôm thịt thơm ngon.",
+      "price": 3.0,
+      "rating": 4.9,
+      "reviews": "2.2k",
+      "available": true
+    },
+    {
+      "id": "6",
+      "name": "Cơm Tấm",
+      "image": "https://cdn.tgdd.vn/Files/2021/09/09/1382286/cach-lam-com-tam-suon-bi-cha-chay-dan-an-ngon-dung-chuan-202201251141178026.jpg",
+      "category": "Món chính",
+      "description": "Cơm tấm sườn bì chả với nước mắm chua ngọt.",
+      "price": 3.5,
+      "rating": 4.9,
+      "reviews": "3.0k",
+      "available": true
+    },
+    {
+      "id": "7",
+      "name": "Chả Giò",
+      "image": "https://cdn.tgdd.vn/Files/2021/01/11/1320912/cach-lam-cha-gio-thit-heo-chay-gion-rum-ngon-mieng-de-lam-202201251145149938.jpg",
+      "category": "Món khai vị",
+      "description": "Chả giò giòn tan, nhân thịt và rau củ thơm ngon.",
+      "price": 2.2,
+      "rating": 4.6,
+      "reviews": "1.3k",
+      "available": true
+    },
+    {
+      "id": "8",
+      "name": "Hủ Tiếu Nam Vang",
+      "image": "https://cdn.tgdd.vn/Files/2021/09/09/1382294/cach-lam-hu-tieu-nam-vang-thom-ngon-dam-da-202201251150546457.jpg",
+      "category": "Món chính",
+      "description": "Hủ tiếu Nam Vang nước dùng đậm đà, topping đầy đủ.",
+      "price": 3.8,
+      "rating": 4.8,
+      "reviews": "2.5k",
+      "available": true
+    },
+    {
+      "id": "9",
+      "name": "Bánh Bèo",
+      "image": "https://cdn.tgdd.vn/Files/2021/09/09/1382299/cach-lam-banh-beo-nuoc-cot-dua-thom-ngon-chuan-vi-202201251153456052.jpg",
+      "category": "Món ăn vặt",
+      "description": "Bánh bèo chén với nước mắm chấm ngọt đậm vị.",
+      "price": 1.5,
+      "rating": 4.7,
+      "reviews": "1.8k",
+      "available": true
+    },
+    {
+      "id": "10",
+      "name": "Xôi Mặn",
+      "image": "https://cdn.tgdd.vn/Files/2021/09/09/1382302/cach-lam-xoi-man-thom-ngon-hap-dan-de-lam-tai-nha-202201251156322904.jpg",
+      "category": "Món ăn sáng",
+      "description": "Xôi mặn với lạp xưởng, trứng cút, hành phi và chà bông.",
+      "price": 2.0,
+      "rating": 4.6,
+      "reviews": "1.4k",
+      "available": true
     }
   ],
   "orders": [
@@ -85,5 +173,3 @@
     }
   ]
 }
-
-
