@@ -55,11 +55,12 @@
       "status": "pending",
       "paymentMethod": "credit_card",
       "shippingAddress": {
-       "phone": "0987654321",
-       "addressDetails": "Hà Nội",
+        "phone": "0987654321",
+        "addressDetails": "Hà Nội",
         "note": "Giao hàng giờ hành chính"
       },
-      "createdAt": "2025-03-10T10:30:00Z"
+      "createdAt": "2025-03-10T10:30:00Z",
+      "id": "187a"
     }
   ],
   "cart": [
@@ -68,9 +69,14 @@
       "items": [
         {
           "foodId": "1",
-          "quantity": 1
+          "quantity": 9
+        },
+        {
+          "foodId": "2",
+          "quantity": 8
         }
-      ]
+      ],
+      "id": "16fd"
     }
   ],
   "payments": [
@@ -81,9 +87,8 @@
       "amount": 6.8,
       "paymentMethod": "credit_card",
       "status": "successful",
-      "transactionDate": "2025-03-10T10:35:00Z"
+      "transactionDate": "2025-03-10T10:35:00Z",
+      "id": "3b94"
     }
   ]
 }
-
-

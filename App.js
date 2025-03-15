@@ -8,6 +8,8 @@ import BottomNavigator from "./src/navigator/BottomNavigator";
 import AdminDashboard from "./src/screen/admin/AdminDashboard";
 import LoginModal from "./src/component/LoginModal"; // Màn hình đăng nhập
 import { ContextProvider } from "./src/context/Context"; // Import ContextProvider
+import CartScreen from "./src/screen/user/CartScreen";
+import FoodDetail from "./src/screen/user/FoodDetai";
 
 const Stack = createStackNavigator();
 
@@ -54,11 +56,12 @@ export default function App() {
               component={BottomNavigator}
               options={{ headerShown: false }}
             />
-            <Stack.Screen
-              name="AdminDashboard"
-              component={AdminDashboard}
-              options={{ title: "Admin Panel" }}
-            />
+            <Stack.Screen 
+              name="FoodDetail" 
+              component={FoodDetail} />
+            <Stack.Screen 
+              name="CartScreen" 
+              component={CartScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaProvider>

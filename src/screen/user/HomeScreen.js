@@ -12,6 +12,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Context } from "../../context/Context";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 Text.defaultProps = {
   style: { fontFamily: "Roboto" },
@@ -19,6 +20,7 @@ Text.defaultProps = {
 
 const HomeScreen = () => {
   const { foods } = useContext(Context);
+  const navigation = useNavigation();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -32,7 +34,9 @@ const HomeScreen = () => {
         </View>
         <View style={styles.headerIcons}>
           <Ionicons name="notifications-outline" size={24} color="black" />
-          <MaterialIcons name="shopping-cart" size={24} color="black" />
+          <TouchableOpacity onPress={() => navigation.navigate("CartScreen")}>
+            <MaterialIcons name="shopping-cart" size={24} color="black" />
+          </TouchableOpacity>
         </View>
       </View>
 
@@ -80,7 +84,9 @@ const HomeScreen = () => {
         data={foods}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-          <TouchableOpacity style={styles.foodItem}>
+          <TouchableOpacity 
+          style={styles.foodItem}
+          onPress={() => navigation.navigate("FoodDetail", { foodId: item.id })}>
             <Image source={{ uri: item.image }} style={styles.foodImage} />
             <View style={styles.foodInfo}>
               <Text style={styles.foodName}>{item.name}</Text>
