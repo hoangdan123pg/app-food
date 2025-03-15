@@ -1,60 +1,84 @@
-import React, { useEffect, useState } from "react";
-import { View, Text, FlatList, Button } from "react-native";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { View, Text, StyleSheet, FlatList } from "react-native";
+import { IP_LOCAL } from "@env";
+
+const apiUrl = `http://${IP_LOCAL}:3000/orders`;
 
 const OrderManager = () => {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+        setOrders(data);
+      } catch (error) {
+        console.error("Lỗi khi tải đơn hàng:", error);
+      }
+    };
+
     fetchOrders();
   }, []);
 
-  const fetchOrders = async () => {
-    try {
-      const res = await axios.get("http://localhost:3000/orders");
-      setOrders(res.data);
-    } catch (error) {
-      console.error(error);
-    }
+  const formatPrice = (price) => {
+    return price.toLocaleString("vi-VN") + " VND"; // Hiển thị 500.000 VND
   };
 
-  const updateStatus = async (id, newStatus) => {
-    await axios.patch(`http://localhost:3000/orders/${id}`, {
-      status: newStatus,
-    });
-    fetchOrders();
-  };
+  const renderOrderItem = ({ item }) => (
+    <View style={styles.orderCard}>
+      <Text style={styles.orderId}>Mã đơn: {item.orderId}</Text>
+      <Text>👤 Người đặt: {item.userId}</Text>
+      <Text>📦 Trạng thái: {item.status}</Text>
+      <Text>💳 Thanh toán: {item.paymentMethod}</Text>
+      <Text>💰 Tổng tiền: {formatPrice(item.totalPrice)}</Text>
+      <Text>📍 Địa chỉ: {item.shippingAddress.addressDetails}</Text>
+      {item.shippingAddress.note ? (
+        <Text>📝 Ghi chú: {item.shippingAddress.note}</Text>
+      ) : null}
+    </View>
+  );
 
   return (
-    <View>
-      <Text>Danh sách đơn hàng</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>📋 Quản lý đơn hàng</Text>
       <FlatList
         data={orders}
-        keyExtractor={(item) => item.orderId}
-        renderItem={({ item }) => (
-          <View style={{ padding: 10 }}>
-            <Text>Khách hàng: {item.userId}</Text>
-            <Text>Món:</Text>
-            {item.items.map((food, index) => (
-              <Text key={index}>
-                - {food.foodId} (x{food.quantity})
-              </Text>
-            ))}
-            <Text>Tổng tiền: {item.totalPrice} VND</Text>
-            <Text>Trạng thái: {item.status}</Text>
-            <Button
-              title="Xác nhận"
-              onPress={() => updateStatus(item.orderId, "confirmed")}
-            />
-            <Button
-              title="Hủy"
-              onPress={() => updateStatus(item.orderId, "canceled")}
-            />
-          </View>
-        )}
+        keyExtractor={(item) => item.orderId.toString()}
+        renderItem={renderOrderItem}
       />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 16,
+    backgroundColor: "#f5f5f5",
+  },
+  title: {
+    fontSize: 22,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginBottom: 16,
+  },
+  orderCard: {
+    backgroundColor: "#fff",
+    padding: 16,
+    marginBottom: 10,
+    borderRadius: 8,
+    shadowColor: "#000",
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  orderId: {
+    fontWeight: "bold",
+    fontSize: 16,
+    marginBottom: 4,
+    color: "#007bff",
+  },
+});
 
 export default OrderManager;

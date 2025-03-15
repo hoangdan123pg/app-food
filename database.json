@@ -2,13 +2,13 @@
   "accounts": [
     {
       "id": "ac01",
-      "email": "admin@restaurant.com",
+      "email": "admin@gmail.com",
       "password": "admin123",
       "role": "admin"
     },
     {
       "id": "ac02",
-      "email": "user01@example.com",
+      "email": "user01@gmail.com",
       "password": "user123",
       "role": "user"
     }
@@ -20,7 +20,7 @@
       "image": "https://imgs.vietnamnet.vn/Images/vnn/2014/08/25/11/20140825110155-bo.jpg",
       "category": "Món chính",
       "description": "Phở bò truyền thống với nước dùng đậm đà.",
-      "price": 2.5,
+      "price": 50000,
       "rating": 4.9,
       "reviews": "3.2k",
       "available": true
@@ -31,9 +31,42 @@
       "image": "https://image.nhandan.vn/w800/Uploaded/2025/igpcvcvjntc8510/2023_04_02/copy-of-banh-mi-phuong-3-1656737659-4047.png.webp",
       "category": "Món ăn nhanh",
       "description": "Bánh mì thịt đầy đủ với pate, thịt nguội và rau sống.",
-      "price": 1.8,
+      "price": 30000,
       "rating": 4.8,
       "reviews": "2.7k",
+      "available": true
+    },
+    {
+      "id": "3",
+      "name": "Bún Chả",
+      "image": "https://daiductai.vn/upload/filemanager/B%C3%BAn%20ch%E1%BA%A3/bun-cha-ha-noi.jpg",
+      "category": "Món chính",
+      "description": "Bún chả Hà Nội với chả nướng thơm ngon và nước chấm đậm đà.",
+      "price": 60000,
+      "rating": 4.7,
+      "reviews": "2.5k",
+      "available": true
+    },
+    {
+      "id": "4",
+      "name": "Gỏi Cuốn",
+      "image": "https://www.vimishop-vnfoods.com/cdn/shop/articles/240627_1200x1200.jpg?v=1720164521",
+      "category": "Món khai vị",
+      "description": "Gỏi cuốn tôm thịt tươi ngon, ăn kèm nước chấm đậu phộng.",
+      "price": 40000,
+      "rating": 4.9,
+      "reviews": "3.0k",
+      "available": true
+    },
+    {
+      "id": "5",
+      "name": "Cơm Tấm Sườn",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzXOovlG2KbXwPer3TbWZgD8JjhNNK1Dwp6w&s",
+      "category": "Món chính",
+      "description": "Cơm tấm sườn bì chả với nước mắm đặc trưng.",
+      "price": 70000,
+      "rating": 4.8,
+      "reviews": "4.1k",
       "available": true
     }
   ],
@@ -51,15 +84,53 @@
           "quantity": 1
         }
       ],
-      "totalPrice": 6.8,
+      "totalPrice": 170000,
       "status": "pending",
       "paymentMethod": "credit_card",
       "shippingAddress": {
-       "phone": "0987654321",
-       "addressDetails": "Hà Nội",
+        "phone": "0987654321",
+        "addressDetails": "Hà Nội",
         "note": "Giao hàng giờ hành chính"
       },
       "createdAt": "2025-03-10T10:30:00Z"
+    },
+    {
+      "orderId": "ord002",
+      "userId": "ac02",
+      "items": [
+        {
+          "foodId": "1",
+          "quantity": 1
+        }
+      ],
+      "totalPrice": 62500,
+      "status": "successful",
+      "paymentMethod": "credit_card",
+      "shippingAddress": {
+        "phone": "0987654321",
+        "addressDetails": "Hồ Chí Minh",
+        "note": "Giao nhanh"
+      },
+      "createdAt": "2025-03-11T12:00:00Z"
+    },
+    {
+      "orderId": "ord003",
+      "userId": "ac02",
+      "items": [
+        {
+          "foodId": "2",
+          "quantity": 3
+        }
+      ],
+      "totalPrice": 135000,
+      "status": "successful",
+      "paymentMethod": "cash",
+      "shippingAddress": {
+        "phone": "0987654321",
+        "addressDetails": "Đà Nẵng",
+        "note": "Gọi trước khi giao"
+      },
+      "createdAt": "2025-03-12T08:15:00Z"
     }
   ],
   "cart": [
@@ -78,12 +149,28 @@
       "paymentId": "pay001",
       "orderId": "ord001",
       "userId": "ac02",
-      "amount": 6.8,
+      "amount": 170000,
       "paymentMethod": "credit_card",
       "status": "successful",
       "transactionDate": "2025-03-10T10:35:00Z"
+    },
+    {
+      "paymentId": "pay002",
+      "orderId": "ord002",
+      "userId": "ac02",
+      "amount": 62500,
+      "paymentMethod": "credit_card",
+      "status": "successful",
+      "transactionDate": "2025-03-11T12:05:00Z"
+    },
+    {
+      "paymentId": "pay003",
+      "orderId": "ord003",
+      "userId": "ac02",
+      "amount": 135000,
+      "paymentMethod": "cash",
+      "status": "successful",
+      "transactionDate": "2025-03-12T08:20:00Z"
     }
   ]
 }
-
-

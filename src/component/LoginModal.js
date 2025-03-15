@@ -1,4 +1,3 @@
-
 import React, { useContext, useState, useEffect } from "react";
 import {
   View,
@@ -8,9 +7,11 @@ import {
   Alert,
   StyleSheet,
   ActivityIndicator,
+  Image,
 } from "react-native";
 import { Context } from "../context/Context";
 import { Ionicons } from "@expo/vector-icons";
+import { IP_LOCAL } from "@env";
 
 export default function AdminLogin({ navigation }) {
   const { setAccount } = useContext(Context);
@@ -23,11 +24,10 @@ export default function AdminLogin({ navigation }) {
   useEffect(() => {
     const fetchAccounts = async () => {
       try {
-        const response = await fetch(
-          `http://${process.env.IP_LOCAL}:3000/accounts`
-        );
+        const response = await fetch(`http://${IP_LOCAL}:3000/accounts`);
         const data = await response.json();
         setAccounts(data);
+        console.log(data)
       } catch (error) {
         console.error("Lỗi khi tải accounts:", error);
         Alert.alert("Lỗi", "Không thể tải dữ liệu tài khoản.");
@@ -63,6 +63,13 @@ export default function AdminLogin({ navigation }) {
 
   return (
     <View style={styles.container}>
+      {/* Hình ảnh logo */}
+      <Image
+        source={require("../../assets/heathy-food.png")}
+        style={styles.logo}
+        resizeMode="contain"
+      />
+
       <Text style={styles.title}>Đăng nhập</Text>
 
       {loading ? (
@@ -107,6 +114,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#f5f5f5",
+  },
+  logo: {
+    width: 200, // Kích thước chiều rộng của logo
+    height: 200, // Kích thước chiều cao của logo
+    marginBottom: 20,
   },
   title: {
     fontSize: 26,

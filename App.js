@@ -6,7 +6,9 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import BottomNavigator from "./src/navigator/BottomNavigator";
 import AdminDashboard from "./src/screen/admin/AdminDashboard";
-import LoginModal from "./src/component/LoginModal"; // Màn hình đăng nhập
+import AccountManager from "./src/screen/admin/AccountManager"; // Thêm màn hình quản lý tài khoản
+import OrderManager from "./src/screen/admin/OrderManager"; // Thêm màn hình quản lý đơn hàng
+import LoginModal from "./src/component/LoginModal";
 import { ContextProvider } from "./src/context/Context"; // Import ContextProvider
 
 const Stack = createStackNavigator();
@@ -57,7 +59,17 @@ export default function App() {
             <Stack.Screen
               name="AdminDashboard"
               component={AdminDashboard}
-              options={{ title: "Admin Panel" }}
+              options={{ title: "Admin DashBoard" }}
+            />
+            <Stack.Screen
+              name="AccountManager"
+              component={AccountManager}
+              options={{ title: "Quản lý tài khoản" }}
+            />
+            <Stack.Screen
+              name="OrderManager"
+              component={OrderManager}
+              options={{ title: "Quản lý đơn hàng" }}
             />
           </Stack.Navigator>
         </NavigationContainer>
