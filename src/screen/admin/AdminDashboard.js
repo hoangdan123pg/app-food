@@ -7,8 +7,9 @@ import {
   ActivityIndicator,
 } from "react-native";
 import axios from "axios";
-import { IP_LOCAL } from "@env"; 
+import { IP_LOCAL } from "@env";
 import Chart from "./Chart";
+
 
 const apiUrl = `http://${IP_LOCAL}:3000`;
 
@@ -72,7 +73,7 @@ const AdminDashboard = ({ navigation }) => {
             <View style={styles.statBox}>
               <Text style={styles.statText}>💰 Tổng doanh thu</Text>
               <Text style={styles.statValue}>
-                {stats.totalRevenue.toLocaleString("vi-VN")} VND 
+                {stats.totalRevenue.toLocaleString("vi-VN")} VND
               </Text>
             </View>
           </View>
@@ -93,24 +94,50 @@ const AdminDashboard = ({ navigation }) => {
         </View>
       )}
 
-      <Button
-        title="Quản lý tài khoản"
-        onPress={() => navigation.navigate("AccountManager")}
-      />
-      <Button
-        title="Quản lý đơn hàng"
-        onPress={() => navigation.navigate("OrderManager")}
-      />
+      <View style={styles.buttonContainer}>
+        <View style={styles.buttonWrapper}>
+          <Button
+            title="Quản lý Món ăn"
+            onPress={() => navigation.navigate("FoodManager")}
+          />
+        </View>
+        <View style={styles.buttonWrapper}>
+          <Button
+            title="Quản lý tài khoản"
+            onPress={() => navigation.navigate("AccountManager")}
+          />
+        </View>
+        <View style={styles.buttonWrapper}>
+          <Button
+            title="Quản lý đơn hàng"
+            onPress={() => navigation.navigate("OrderManager")}
+          />
+        </View>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+ buttonContainer: {
+  flexDirection: "row", 
+  justifyContent: "space-between", 
+  alignItems: "center",
+  paddingHorizontal: 20,
+  marginTop: 20,
+},
+
+buttonWrapper: {
+  flex: 1, // Chia đều không gian cho mỗi nút
+  marginHorizontal: 5, // Thêm khoảng cách giữa các nút
+}
+,
+
   statsContainer: {
     width: "100%",
     paddingHorizontal: 20,
     marginBottom: 20,
-    marginTop: 20
+    marginTop: 20,
   },
   statsRow: {
     flexDirection: "row",
@@ -142,6 +169,5 @@ const styles = StyleSheet.create({
     color: "#333",
   },
 });
-
 
 export default AdminDashboard;

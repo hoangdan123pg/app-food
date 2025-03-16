@@ -11,23 +11,29 @@
       "email": "user01@gmail.com",
       "password": "user123",
       "role": "user"
+    },
+    {
+      "id": "ac3",
+      "email": "ket123@gmail.com",
+      "password": "123",
+      "role": "user"
     }
   ],
   "foods": [
     {
       "id": "1",
-      "name": "Phở Bò",
+      "name": "Phở",
       "image": "https://imgs.vietnamnet.vn/Images/vnn/2014/08/25/11/20140825110155-bo.jpg",
       "category": "Món chính",
       "description": "Phở bò truyền thống với nước dùng đậm đà.",
-      "price": 50000,
+      "price": 30000,
       "rating": 4.9,
       "reviews": "3.2k",
       "available": true
     },
     {
       "id": "2",
-      "name": "Bánh Mì Thịt",
+      "name": "Bánh Mì",
       "image": "https://image.nhandan.vn/w800/Uploaded/2025/igpcvcvjntc8510/2023_04_02/copy-of-banh-mi-phuong-3-1656737659-4047.png.webp",
       "category": "Món ăn nhanh",
       "description": "Bánh mì thịt đầy đủ với pate, thịt nguội và rau sống.",
@@ -68,6 +74,17 @@
       "rating": 4.8,
       "reviews": "4.1k",
       "available": true
+    },
+    {
+      "name": "VitaMinGoo",
+      "image": "123",
+      "category": "Món Chính",
+      "description": "Ngon",
+      "price": 500000,
+      "rating": 4.5,
+      "reviews": "2.6k",
+      "available": true,
+      "id": "6"
     }
   ],
   "orders": [
@@ -92,7 +109,8 @@
         "addressDetails": "Hà Nội",
         "note": "Giao hàng giờ hành chính"
       },
-      "createdAt": "2025-03-10T10:30:00Z"
+      "createdAt": "2025-03-10T10:30:00Z",
+      "id": "782d"
     },
     {
       "orderId": "ord002",
@@ -111,7 +129,8 @@
         "addressDetails": "Hồ Chí Minh",
         "note": "Giao nhanh"
       },
-      "createdAt": "2025-03-11T12:00:00Z"
+      "createdAt": "2025-03-11T12:00:00Z",
+      "id": "f81c"
     },
     {
       "orderId": "ord003",
@@ -130,7 +149,8 @@
         "addressDetails": "Đà Nẵng",
         "note": "Gọi trước khi giao"
       },
-      "createdAt": "2025-03-12T08:15:00Z"
+      "createdAt": "2025-03-12T08:15:00Z",
+      "id": "cb1c"
     }
   ],
   "cart": [
@@ -141,7 +161,8 @@
           "foodId": "1",
           "quantity": 1
         }
-      ]
+      ],
+      "id": "8e88"
     }
   ],
   "payments": [
@@ -152,7 +173,8 @@
       "amount": 170000,
       "paymentMethod": "credit_card",
       "status": "successful",
-      "transactionDate": "2025-03-10T10:35:00Z"
+      "transactionDate": "2025-03-10T10:35:00Z",
+      "id": "2577"
     },
     {
       "paymentId": "pay002",
@@ -161,7 +183,8 @@
       "amount": 62500,
       "paymentMethod": "credit_card",
       "status": "successful",
-      "transactionDate": "2025-03-11T12:05:00Z"
+      "transactionDate": "2025-03-11T12:05:00Z",
+      "id": "043e"
     },
     {
       "paymentId": "pay003",
@@ -170,7 +193,8 @@
       "amount": 135000,
       "paymentMethod": "cash",
       "status": "successful",
-      "transactionDate": "2025-03-12T08:20:00Z"
+      "transactionDate": "2025-03-12T08:20:00Z",
+      "id": "8a0d"
     }
   ]
 }

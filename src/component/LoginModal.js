@@ -102,6 +102,12 @@ export default function AdminLogin({ navigation }) {
           <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
             <Text style={styles.loginText}>Đăng nhập</Text>
           </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+            <Text style={styles.registerLink}>
+              <Text style={{ color: "black",fontSize:"14" }}>Chưa có tài khoản? </Text> Đăng
+              ký ngay
+            </Text>
+          </TouchableOpacity>
         </>
       )}
     </View>
@@ -168,5 +174,11 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 18,
     fontWeight: "bold",
+  },
+  registerLink: {
+    marginTop: 20,
+    color: "#ff6600",
+    fontSize: 16,
+    textDecorationLine: "none",
   },
 });

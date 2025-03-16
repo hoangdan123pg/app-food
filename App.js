@@ -10,6 +10,8 @@ import AccountManager from "./src/screen/admin/AccountManager"; // Thêm màn h�
 import OrderManager from "./src/screen/admin/OrderManager"; // Thêm màn hình quản lý đơn hàng
 import LoginModal from "./src/component/LoginModal";
 import { ContextProvider } from "./src/context/Context"; // Import ContextProvider
+import Register from "./src/component/Register";
+import FoodManager from "./src/screen/admin/FoodManager";
 
 const Stack = createStackNavigator();
 
@@ -52,6 +54,11 @@ export default function App() {
               options={{ headerShown: false }}
             />
             <Stack.Screen
+              name="Register"
+              component={Register}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
               name="BottomNavigator"
               component={BottomNavigator}
               options={{ headerShown: false }}
@@ -60,6 +67,11 @@ export default function App() {
               name="AdminDashboard"
               component={AdminDashboard}
               options={{ title: "Admin DashBoard" }}
+            />
+            <Stack.Screen
+              name="FoodManager"
+              component={FoodManager}
+              options={{ title: "Quản lý Món ăn" }}
             />
             <Stack.Screen
               name="AccountManager"
