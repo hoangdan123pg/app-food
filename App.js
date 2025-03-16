@@ -6,7 +6,9 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import BottomNavigator from "./src/navigator/BottomNavigator";
 import AdminDashboard from "./src/screen/admin/AdminDashboard";
-import LoginModal from "./src/component/LoginModal"; // Màn hình đăng nhập
+import AccountManager from "./src/screen/admin/AccountManager"; // Thêm màn hình quản lý tài khoản
+import OrderManager from "./src/screen/admin/OrderManager"; // Thêm màn hình quản lý đơn hàng
+import LoginModal from "./src/component/LoginModal";
 import { ContextProvider } from "./src/context/Context"; // Import ContextProvider
 import CartScreen from "./src/screen/user/CartScreen";
 import FoodDetail from "./src/screen/user/FoodDetai";
@@ -14,6 +16,8 @@ import Order from "./src/screen/user/Order";
 import Payment from "./src/screen/user/Payment";
 import HomeScreen from "./src/screen/user/HomeScreen";
 import OrderDetail from "./src/screen/user/OrderDetail";
+import Register from "./src/component/Register";
+import FoodManager from "./src/screen/admin/FoodManager";
 
 const Stack = createStackNavigator();
 
@@ -61,6 +65,11 @@ export default function App() {
               options={{ headerShown: false }}
             />
             <Stack.Screen
+              name="Register"
+              component={Register}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
               name="BottomNavigator"
               component={BottomNavigator}
               options={{ headerShown: false }}
@@ -82,6 +91,27 @@ export default function App() {
             <Stack.Screen 
               name="OrderDetail" 
               component={OrderDetail} /> 
+
+            <Stack.Screen
+              name="AdminDashboard"
+              component={AdminDashboard}
+              options={{ title: "Admin DashBoard" }}
+            />
+            <Stack.Screen
+              name="FoodManager"
+              component={FoodManager}
+              options={{ title: "Quản lý Món ăn" }}
+            />
+            <Stack.Screen
+              name="AccountManager"
+              component={AccountManager}
+              options={{ title: "Quản lý tài khoản" }}
+            />
+            <Stack.Screen
+              name="OrderManager"
+              component={OrderManager}
+              options={{ title: "Quản lý đơn hàng" }}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaProvider>
