@@ -7,10 +7,11 @@ const FoodDetail = () => {
     const route = useRoute();
     const { foodId } = route.params;
     const { account } = useContext(Context);
-    console.log("aacoiunt", account.id);
+    //console.log("aacoiunt", account.id);
     const [foodDetail, setFoodDetail] = useState(null);
     const [quantity, setQuantity] = useState(1);
     const [totalPrice, setTotalPrice] = useState(0);
+    const [isFavorite, setIsFavorite] = useState(false);
     const handleIncrease = () => {
         setQuantity(quantity + 1);
         setTotalPrice((quantity + 1) * foodDetail.price);
@@ -22,59 +23,62 @@ const FoodDetail = () => {
             setTotalPrice((quantity - 1) * foodDetail.price);
         }
     };
+//http://${process.env.IP_LOCAL}:3000/foods/${foodId}
+useEffect(() => {
+    const fetchFoodDetail = async () => {
+        try {
+            const foodResponse = await fetch(`http://${process.env.IP_LOCAL}:3000/foods/${foodId}`);
+            const foodData = await foodResponse.json();
+            setFoodDetail(foodData);
+            setTotalPrice(foodData.price);
 
-    useEffect(() => {
-        const apiUrl = `http://${process.env.IP_LOCAL}:3000/foods/${foodId}`;
-        // console.log(apiUrl);
-        fetch(apiUrl)
-            .then((response) => response.json())
-            .then((data) => {
-                setFoodDetail(data);
-                setTotalPrice(data.price);
-                // console.log(data);
-            })
-            .catch((error) => console.error("Fetch error:", error));
-    }, [foodId]);
+            // Kiểm tra xem món ăn có trong danh sách yêu thích không
+            const favoriteResponse = await fetch(`http://${process.env.IP_LOCAL}:3000/favorites?userId=${account.id}`);
+            const favoriteData = await favoriteResponse.json();
 
+            if (favoriteData.length > 0 && favoriteData[0].foodIds.includes(foodId)) {
+                setIsFavorite(true);
+            }
+        } catch (error) {
+            console.error("Fetch error:", error);
+        }
+    };
 
-
+    fetchFoodDetail();
+}, [foodId]);
     // Xử lý khi nhấn "Add to Cart"
     const handleAddToCart = async () => {
         try {
             // Lấy giỏ hàng hiện tại của user
             const cartResponse = await fetch(`http://${process.env.IP_LOCAL}:3000/cart?userId=${account.id}`);
-            //console.log("Response Status:", cartResponse.status);
-
-            const rawText = await cartResponse.text(); // Lấy dữ liệu raw
-            // console.log("Raw Response:", rawText);
-            let cartData;
-            try {
-                cartData = JSON.parse(rawText); // Chuyển thành JSON
-            } catch (err) {
-                console.error("JSON Parse Error:", err);
-                return; // Thoát sớm nếu JSON lỗi
-            }
-            //console.log("cartData:", cartData);
+            const cartData = await cartResponse.json(); // Chuyển thành JSON
+           // console.log("1", cartData);
+    
             let updatedCart;
             if (cartData.length > 0) {
                 // Nếu user đã có giỏ hàng
-                let cart = cartData[0]; // Vì `json-server` trả về mảng khi query với `?userId=`
+                let cart = cartData[0]; // Vì json-server trả về mảng khi query với ?userId=
+                let cartId = cart.id;   // Lấy id của giỏ hàng
                 let existingItemIndex = cart.items.findIndex(item => item.foodId === foodId);
+    
                 if (existingItemIndex !== -1) {
                     // Nếu sản phẩm đã có, cập nhật số lượng
                     cart.items[existingItemIndex].quantity += quantity;
                 } else {
-                    // Nếu sản phẩm chưa có, thêm mới vào `items`
+                    // Nếu sản phẩm chưa có, thêm mới vào items
                     cart.items.push({ foodId, quantity });
                 }
-                // Gửi yêu cầu cập nhật giỏ hàng
-                const updateResponse = await fetch(`http://${process.env.IP_LOCAL}:3000/cart/${cart.id}`, {
-                    method: "PUT", // Hoặc PATCH
+                //console.log("2", cart);
+    
+                // Gửi yêu cầu cập nhật giỏ hàng bằng PATCH với id
+                const updateResponse = await fetch(`http://${process.env.IP_LOCAL}:3000/cart/${cartId}`, {
+                    method: "PATCH",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(cart),
+                    body: JSON.stringify({ items: cart.items }), // Chỉ cập nhật items
                 });
+    
                 updatedCart = await updateResponse.json();
-                //console.log("Updated Cart:", updatedCart);
+                // console.log("Updated Cart:", updatedCart);
                 Alert.alert("Success", "Added to cart!");
             } else {
                 // Nếu user chưa có giỏ hàng, tạo mới
@@ -82,17 +86,59 @@ const FoodDetail = () => {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
+                        id: `cart${account.userId}`, // Tạo ID duy nhất
                         userId: account.userId,
                         items: [{ foodId, quantity }],
                     }),
                 });
+    
                 updatedCart = await createResponse.json();
+                //console.log("New Cart Created:", updatedCart);
             }
-            console.log("Updated Cart:", updatedCart);
+    
         } catch (error) {
             console.error("Error updating cart:", error);
         }
     };
+    const toggleFavorite = async () => {
+        try {
+            const favoriteResponse = await fetch(`http://${process.env.IP_LOCAL}:3000/favorites?userId=${account.id}`);
+            const favoriteData = await favoriteResponse.json();
+            let favoriteId, updatedFoodIds;
+
+            if (favoriteData.length > 0) {
+                favoriteId = favoriteData[0].id;
+                updatedFoodIds = isFavorite
+                    ? favoriteData[0].foodIds.filter(id => id !== foodId)
+                    : [...favoriteData[0].foodIds, foodId];
+
+                // Cập nhật danh sách yêu thích
+                await fetch(`http://${process.env.IP_LOCAL}:3000/favorites/${favoriteId}`, {
+                    method: "PATCH",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ foodIds: updatedFoodIds }),
+                });
+            } else {
+                // Nếu user chưa có danh sách yêu thích, tạo mới
+                const newFavorite = {
+                    userId: account.id,
+                    foodIds: [foodId],
+                };
+
+                await fetch(`http://${process.env.IP_LOCAL}:3000/favorites`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(newFavorite),
+                });
+            }
+
+            setIsFavorite(!isFavorite);
+            Alert.alert("Success", isFavorite ? "Removed from favorites!" : "Added to favorites!");
+        } catch (error) {
+            console.error("Error updating favorites:", error);
+        }
+    };
+    
     if (!foodDetail) {
         return (
             <View style={styles.loadingContainer}>
@@ -119,6 +165,9 @@ const FoodDetail = () => {
                 </View>
 
                 <Text style={styles.foodName}>{foodDetail.name}</Text>
+                <TouchableOpacity onPress={toggleFavorite} style={styles.favoriteButton}>
+                        <Text style={{ fontSize: 24 }}>{isFavorite ? "❤️" : "🤍"}</Text>
+                    </TouchableOpacity>
                 <Text style={styles.description}>{foodDetail.description}</Text>
                 <Text style={styles.price}>${foodDetail.price} ={">          "}Total: {totalPrice}</Text>
                 <Text style={styles.rating}>⭐ {foodDetail.rating} ({foodDetail.reviews} reviews)</Text>
@@ -214,6 +263,14 @@ const styles = StyleSheet.create({
         color: "#fff",
         fontSize: 18,
         fontWeight: "bold",
+    },
+    favoriteContainer: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+    },
+    favoriteButton: {
+        padding: 10,
     },
 });
 

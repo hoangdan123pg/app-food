@@ -10,6 +10,7 @@ import Profile from "../screen/user/Profile";
 import AdminDashboard from "../screen/admin/AdminDashboard"; 
 import { Context } from "../context/Context";
 import LoginModal from "../component/LoginModal";
+import Favorite from "../screen/user/Favorite";
 
 const Tab = createBottomTabNavigator();
 
@@ -27,8 +28,8 @@ export default function BottomNavigator() {
             iconName = focused ? "home" : "home-outline";
           else if (route.name === "Order")
             iconName = focused ? "list" : "list-outline";
-          else if (route.name === "Notification")
-            iconName = focused ? "notifications" : "notifications-outline";
+          else if (route.name === "Favorite")
+            iconName = focused ? "heart" : "heart-outline";
           else if (route.name === "Profile")
             iconName = focused ? "person" : "person-outline";
           else if (route.name === "Admin")
@@ -50,8 +51,8 @@ export default function BottomNavigator() {
         options={{ headerShown: false }}
       />
       <Tab.Screen
-        name="Notification"
-        component={Notification}
+        name="Favorite"
+        component={Favorite}
         options={{ headerShown: false }}
       />
       <Tab.Screen

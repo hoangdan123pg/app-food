@@ -5,7 +5,6 @@ export const Context = createContext();
 export const ContextProvider = ({ children }) => {
   const [foods, setFoods] = useState([]);
   const [account, setAccount] = useState("null");
-
   useEffect(() => {
     const apiUrl = `http://${process.env.IP_LOCAL}:3000/foods`;
 

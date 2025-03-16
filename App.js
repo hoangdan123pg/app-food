@@ -10,6 +10,10 @@ import LoginModal from "./src/component/LoginModal"; // Màn hình đăng nhập
 import { ContextProvider } from "./src/context/Context"; // Import ContextProvider
 import CartScreen from "./src/screen/user/CartScreen";
 import FoodDetail from "./src/screen/user/FoodDetai";
+import Order from "./src/screen/user/Order";
+import Payment from "./src/screen/user/Payment";
+import HomeScreen from "./src/screen/user/HomeScreen";
+import OrderDetail from "./src/screen/user/OrderDetail";
 
 const Stack = createStackNavigator();
 
@@ -46,6 +50,11 @@ export default function App() {
         <StatusBar style="auto" />
         <NavigationContainer>
           <Stack.Navigator initialRouteName={initialRoute}>
+          <Stack.Screen
+              name="HomeScreen"
+              component={HomeScreen}
+              options={{ headerShown: false }}
+            />
             <Stack.Screen
               name="Login"
               component={LoginModal}
@@ -62,6 +71,17 @@ export default function App() {
             <Stack.Screen 
               name="CartScreen" 
               component={CartScreen} />
+
+            <Stack.Screen 
+              name="Payment" 
+              component={Payment} />
+
+            <Stack.Screen 
+              name="Order" 
+              component={Order} /> 
+            <Stack.Screen 
+              name="OrderDetail" 
+              component={OrderDetail} /> 
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaProvider>

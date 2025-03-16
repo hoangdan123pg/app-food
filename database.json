@@ -53,7 +53,7 @@
       ],
       "totalPrice": 6.8,
       "status": "pending",
-      "paymentMethod": "credit_card",
+      "paymentMethod": "cash",
       "shippingAddress": {
         "phone": "0987654321",
         "addressDetails": "Hà Nội",
@@ -61,22 +61,58 @@
       },
       "createdAt": "2025-03-10T10:30:00Z",
       "id": "187a"
-    }
-  ],
-  "cart": [
+    },
     {
+      "id": "6d76",
+      "orderId": "ord1742122979289",
+      "userId": "ac02",
+      "items": [
+        {
+          "foodId": "2",
+          "quantity": 4
+        }
+      ],
+      "totalPrice": 7.2,
+      "status": "pending",
+      "paymentMethod": "cash",
+      "shippingAddress": {
+        "phone": "1234567",
+        "addressDetails": "Ha Noi",
+        "note": "1233"
+      },
+      "createdAt": "2025-03-16T11:02:59.289Z"
+    },
+    {
+      "id": "7fa9",
+      "orderId": "ord1742123203972",
       "userId": "ac02",
       "items": [
         {
           "foodId": "1",
-          "quantity": 9
-        },
-        {
-          "foodId": "2",
-          "quantity": 8
+          "quantity": 3
         }
       ],
-      "id": "16fd"
+      "totalPrice": 7.5,
+      "status": "pending",
+      "paymentMethod": "cash",
+      "shippingAddress": {
+        "phone": "111",
+        "addressDetails": "111",
+        "note": "111"
+      },
+      "createdAt": "2025-03-16T11:06:43.972Z"
+    }
+  ],
+  "cart": [
+    {
+      "id": "cartAc02",
+      "userId": "ac02",
+      "items": [
+        {
+          "foodId": "1",
+          "quantity": 3
+        }
+      ]
     }
   ],
   "payments": [
@@ -90,5 +126,6 @@
       "transactionDate": "2025-03-10T10:35:00Z",
       "id": "3b94"
     }
-  ]
+  ],
+  "favorites": []
 }
